@@ -70,7 +70,7 @@ AB_OTA_POSTINSTALL_CONFIG += \
 
 # ANT+
 PRODUCT_PACKAGES += \
-    AntHalService
+    AntHalService-Soong
 
 # Audio
 PRODUCT_PACKAGES += \
