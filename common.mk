@@ -237,4 +237,5 @@ PRODUCT_PACKAGES += \
     vendor.qti.hardware.wifi.supplicant@2.0.vendor \
     vendor.qti.hardware.wifi.supplicant@2.1.vendor \
     wpa_supplicant \
-    wpa_supplicant.conf
+    wpa_supplicant.conf \
+    WifiOverlay
