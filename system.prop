@@ -1,0 +1,66 @@
+# ACCY
+vendor.asus.accy_gen=3
+vendor.asus.accy.fw_status=000000
+vendor.asus.accy.fw_status2=000000
+vendor.asus.accy.fw_status3=000000
+
+# Audio
+ro.audio.monitorRotation=true
+
+# CNE
+persist.vendor.cne.feature=1
+
+# Camera
+vendor.camera.ai_scene_mode=4:1;1:1;2:1;3:1;6:1
+vendor.camera.asus.system=1
+vendor.camera.cam0.eis.sup_list=4K@30,FHD@60,FHD@30,HD@30
+vendor.camera.cam1.eis.sup_list=FHD@60,FHD@30,HD@30
+vendor.camera.cam1.exposure_time_range=100000,32000000000
+vendor.camera.cam1.stream_list=1P/2Y/1J
+vendor.camera.cam1.video_fps=HD@60,FHD@60
+vendor.camera.cam2.eis.sup_list=4K@30,FHD@60,FHD@30,HD@30
+vendor.camera.cam2.exposure_time_range=100000,16000000000
+vendor.camera.cam2.video_fps=HD@60,FHD@60,4K@30
+vendor.camera.cam3.eis.sup_list=FHD@30,HD@30
+vendor.camera.cam3.exposure_time_range=100000,16000000000
+vendor.camera.cam3.video_fps=HD@30,FHD@30
+vendor.camera.cam4.eis.sup_list=8K@30,4K@60,4K@30,FHD@60,FHD@30,HD@30
+vendor.camera.cam4.exposure_time_range=100000,32000000000
+vendor.camera.cam4.stream_list=1P/2Y/1J
+vendor.camera.cam4.video_fps=HD@60,FHD@60,4K@60
+vendor.camera.cam6.crop_region=0,0,4224,3136;877,651,3347,2485
+vendor.camera.cam6.eis.sup_list=8K@30,4k@60,4K@30,FHD@60,FHD@30,HD@30
+vendor.camera.cam6.video_fps=HD@60,FHD@60,4K@30
+vendor.camera.capture.override_max_digital_zoom=4:8;1:8
+vendor.camera.dual_bokeh=4:0;1:0;2:0;3:0;5:1
+vendor.camera.expTimeMax=0
+vendor.camera.fovc=0:0;1:0;2:0;3:0;4:1;5:0;6:0
+vendor.camera.lens_type=4:standard;1:standard;2:wide-angle;3:macro;5:virtual;6:sat
+vendor.camera.night=4:1;1:0;2:1;3:0;6:1
+vendor.camera.preview_beauty=4:1;1:1;2:1;3:1;5:1;6:1
+vendor.camera.preview_portrait=4:0;1:1;2:0;3:0
+vendor.camera.undistortion.preview=4:0;1:0;2:1;3:0;6:1
+vendor.camera.undistortion.video=4:0;1:0;2:0;3:0
+vendor.camera.use_frame_processor=0
+
+# Display
+debug.sf.enable_hwc_vds=1
+
+# GPS
+persist.vendor.overlay.izat.optin=rro
+
+# IOP
+vendor.iop.enable_uxe=0
+
+# Netmgr
+persist.vendor.data.mode=concurrent
+
+# Sensors
+persist.vendor.sensors.enable.mag_filter=true
+
+# Station
+vendor.station.hwid=none
+vendor.station.generation=none
+
+# Vendor
+ro.vendor.qti.va_aosp.support=1
