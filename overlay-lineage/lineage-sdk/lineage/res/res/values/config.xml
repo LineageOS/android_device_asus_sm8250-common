@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     Copyright (C) 2019 The LineageOS Project
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+          http://www.apache.org/licenses/LICENSE-2.0
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<resources>
+    <!-- Hardware keys present on the device, stored as a bit field.
+         This integer should equal the sum of the corresponding value for each
+         of the following keys present:
+             1 - Home
+             2 - Back
+             4 - Menu
+             8 - Assistant (search)
+            16 - App switch
+            32 - Camera
+            64 - Volume rocker
+         For example, a device with Home, Back and Menu keys would set this
+         config to 7. -->
+    <integer name="config_deviceHardwareKeys">64</integer>
+
+    <!-- Hardware keys present on the device with the ability to wake, stored as a bit field.
+         This integer should equal the sum of the corresponding value for each
+         of the following keys present:
+             1 - Home
+             2 - Back
+             4 - Menu
+             8 - Assistant (search)
+            16 - App switch
+            32 - Camera
+            64 - Volume rocker
+         For example, a device with Home, Back and Menu keys would set this
+         config to 7. -->
+    <integer name="config_deviceHardwareWakeKeys">64</integer>
+
+    <!-- Whether device has screen with higher aspect ratio -->
+    <bool name="config_haveHigherAspectRatioScreen">true</bool>
+
+   <!-- The list of vendor package signatures that should also be considered
+         platform signatures, specifically for use on devices with a vendor partition. -->
+    <string-array name="config_vendorPlatformSignatures" translatable="false">
+        <item>308203e1308202c9a003020102020900ac08b4b902e81104300d06092a864886f70d01010b0500308186310b3009060355040613025457310f300d06035504080c0654616977616e310f300d06035504070c065461697065693110300e060355040a0c074173757354656b3110300e060355040b0c0750686f6e6542553110300e06035504030c075a533636314b53311f301d06092a864886f70d0109011610737570706f727440617375732e636f6d3020170d3230303130383037303235345a180f32303531303130393037303235345a308186310b3009060355040613025457310f300d06035504080c0654616977616e310f300d06035504070c065461697065693110300e060355040a0c074173757354656b3110300e060355040b0c0750686f6e6542553110300e06035504030c075a533636314b53311f301d06092a864886f70d0109011610737570706f727440617375732e636f6d30820120300d06092a864886f70d01010105000382010d00308201080282010100cc6ee4f00dced3eeefb5b647f8582e196bce357b8852c29f4a66c836f8b457b816f7e4d96f10a02e435321c7464638be90f9de542eceab134d0c9d071d6011b4b519322b877cbd93ec86fedced6c102fc3b5fe87d18988689a8e3ad8f96ba7cea347547a66420790ee8c2d08850c9947abf12aff82c8ac634b7d2dc52e94553b62ea929313c2831d352f92242e1f1cec68f6ad07c1f3e778895ad95bd0c59eac916242d958e7a775740b489018e9e798590cd63193459da7ed865b0abe0334ca3bef5eb457899589f8f3b7b13579b29fea5ca76e62e3aba05d299b9d9fe585361fe909ba2575ce6821dc7aeed6a70ab0cbb2ecf63036a32a472840ef9d8915d9020103a350304e301d0603551d0e041604140970668cd57468b9f8faea33ae8200d8218a6f67301f0603551d230418301680140970668cd57468b9f8faea33ae8200d8218a6f67300c0603551d13040530030101ff300d06092a864886f70d01010b05000382010100aadbf7d21cf431d3ea6e656100e54dae7ba7db0fad919a4c247062f16b67b7b2c116028dd0154cca949685c62bcfffed15832bff756ed38fbbc191f7b3bff43c3d8884c04db00b05981b233e7e940397f70ac45793ba860b32ecf45361ba9199e361b99ec8cc197c57107c16549fa4696d516d0db927bb3956ba4aa141d96696a41f3b7ca06699bab59d2ed60384398a60e65a2202cef71ffa89e5227a632114c8dbb19ef4bd4673bae163bdea27b2dc9321b4d9a67e29abac35488e276be1e18e964ae6511ee83eb79f5724611fa52e63bcd6d4a552836063bbef12930698acfadc2916650f7f75fd818607b5e3247cfff4b683d714e2752501a6c35812d194</item>
+    </string-array>
+</resources>
