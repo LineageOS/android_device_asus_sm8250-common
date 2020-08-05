@@ -4,3 +4,6 @@
 /asdf(/.*)?		u:object_r:log_file:s0
 /batinfo(/.*)?		u:object_r:bat_file:s0
 /xrom(/.*)?		u:object_r:xrom_file:s0
+
+# Vendor overlay
+/(product|system/product)/vendor_overlay/[0-9]+/etc(/.*)?	u:object_r:vendor_configs_file:s0
