@@ -2,3 +2,5 @@ type bat_file, file_type;
 type demoapp_file, file_type;
 type log_file, file_type;
 type xrom_file, file_type;
+
+type qmipriod_data_file, file_type, data_file_type;
