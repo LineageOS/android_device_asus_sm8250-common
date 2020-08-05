@@ -52,6 +52,9 @@ persist.vendor.overlay.izat.optin=rro
 # IOP
 vendor.iop.enable_uxe=0
 
+# Media
+media.settings.xml=/vendor/etc/media_profiles_vendor.xml
+
 # Netmgr
 persist.vendor.data.mode=concurrent
 
