@@ -7,6 +7,7 @@
 
 # HALs
 /system/bin/hw/lineage\.touch@1\.0-service\.asus_kona		u:object_r:hal_lineage_touch_asus_kona_exec:s0
+/system/bin/hw/lineage\.biometrics\.fingerprint\.inscreen@1\.0-service\.asus_kona	u:object_r:hal_fod_asus_kona_exec:s0
 
 # Vendor overlay
 /(product|system/product)/vendor_overlay/[0-9]+/etc(/.*)?	u:object_r:vendor_configs_file:s0
