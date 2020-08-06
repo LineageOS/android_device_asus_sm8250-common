@@ -27,6 +27,10 @@ namespace inscreen {
 namespace V1_0 {
 namespace implementation {
 
+FingerprintInscreen::FingerprintInscreen() {
+    this->mGoodixFingerprintDaemon = IGoodixFingerprintDaemon::getService();
+}
+
 Return<void> FingerprintInscreen::onStartEnroll() {
     return Void();
 }
@@ -36,10 +40,12 @@ Return<void> FingerprintInscreen::onFinishEnroll() {
 }
 
 Return<void> FingerprintInscreen::onPress() {
+    this->mGoodixFingerprintDaemon->sendCommand(0x600, {}, {});
     return Void();
 }
 
 Return<void> FingerprintInscreen::onRelease() {
+    this->mGoodixFingerprintDaemon->sendCommand(0x601, {}, {});
     return Void();
 }
 
