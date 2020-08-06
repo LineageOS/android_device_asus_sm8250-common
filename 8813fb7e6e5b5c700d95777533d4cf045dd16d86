@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a57a998b_98795f9b",
+        "filename": "sepolicy/private/file.te",
+        "patchSetId": 13
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 11883
+      },
+      "writtenOn": "2020-08-06T16:00:09Z",
+      "side": 1,
+      "message": "# Files in rootfs",
+      "revId": "8813fb7e6e5b5c700d95777533d4cf045dd16d86",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": true
+    }
+  ]
+}
