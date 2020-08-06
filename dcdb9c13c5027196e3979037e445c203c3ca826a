@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "996f43f0_a1bf3f6b",
+        "filename": "sepolicy/private/file.te",
+        "patchSetId": 3
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 11883
+      },
+      "writtenOn": "2020-08-06T16:00:07Z",
+      "side": 1,
+      "message": "# Files in userdata",
+      "revId": "dcdb9c13c5027196e3979037e445c203c3ca826a",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "286ab1e1_8e872f26",
+        "filename": "sepolicy/private/qmipriod.te",
+        "patchSetId": 3
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 11883
+      },
+      "writtenOn": "2020-08-06T16:00:07Z",
+      "side": 1,
+      "message": "~space",
+      "revId": "dcdb9c13c5027196e3979037e445c203c3ca826a",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": true
+    }
+  ]
+}
