@@ -61,6 +61,9 @@ media.settings.xml=/vendor/etc/media_profiles_vendor.xml
 # Netmgr
 persist.vendor.data.mode=concurrent
 
+# Radio
+ro.telephony.default_network=22,22
+
 # Sensors
 persist.vendor.sensors.enable.mag_filter=true
 
