@@ -48,6 +48,7 @@ vendor.camera.use_frame_processor=0
 
 # Display
 debug.sf.enable_hwc_vds=1
+ro.gfx.driver.0=com.qualcomm.qti.gpudrivers.sm8250.api29
 
 # GPS
 persist.vendor.overlay.izat.optin=rro
