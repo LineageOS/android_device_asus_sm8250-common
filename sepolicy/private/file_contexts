@@ -5,5 +5,8 @@
 /batinfo(/.*)?		u:object_r:bat_file:s0
 /xrom(/.*)?		u:object_r:xrom_file:s0
 
+# HALs
+/system/bin/hw/lineage\.trust@1\.0-service			u:object_r:hal_trust_default_exec:s0
+
 # Vendor overlay
 /(product|system/product)/vendor_overlay/[0-9]+/etc(/.*)?	u:object_r:vendor_configs_file:s0
