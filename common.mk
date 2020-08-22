@@ -135,6 +135,10 @@ PRODUCT_PACKAGES += \
     qti-telephony-utils \
     qti_telephony_utils.xml
 
+# Trust HAL
+PRODUCT_PACKAGES += \
+    lineage.trust@1.0-service
+
 # Update engine
 PRODUCT_PACKAGES += \
     update_engine \
