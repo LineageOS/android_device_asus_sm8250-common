@@ -19,6 +19,23 @@
 #include "FingerprintInscreen.h"
 
 #include <hidl/HidlTransportSupport.h>
+#include <android-base/logging.h>
+
+#include <fstream>
+
+#define GLOBAL_HBM_FOD_PATH "/proc/globalHbm_fod"
+#define GLOBAL_HBM_FOD_ON 1
+#define GLOBAL_HBM_FOD_OFF 0
+
+namespace {
+
+template <typename T>
+static void set(const std::string& path, const T& value) {
+    std::ofstream file(path);
+    file << value;
+}
+
+}  // anonymous namespace
 
 namespace vendor {
 namespace lineage {
@@ -43,10 +60,14 @@ Return<void> FingerprintInscreen::onFinishEnroll() {
 Return<void> FingerprintInscreen::onPress() {
     this->mGoodixFingerprintDaemon->sendCommand(200001, {},
                                                 [](int, const hidl_vec<signed char>&) {});
+    set(GLOBAL_HBM_FOD_PATH, GLOBAL_HBM_FOD_ON);
+    this->mGoodixFingerprintDaemon->sendCommand(200002, {},
+                                                [](int, const hidl_vec<signed char>&) {});
     return Void();
 }
 
 Return<void> FingerprintInscreen::onRelease() {
+    set(GLOBAL_HBM_FOD_PATH, GLOBAL_HBM_FOD_OFF);
     this->mGoodixFingerprintDaemon->sendCommand(200003, {},
                                                 [](int, const hidl_vec<signed char>&) {});
     return Void();
