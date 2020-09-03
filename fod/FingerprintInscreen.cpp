@@ -18,7 +18,12 @@
 
 #include "FingerprintInscreen.h"
 
+#include <android-base/file.h>
 #include <hidl/HidlTransportSupport.h>
+
+#define GLOBAL_HBM_FOD_MODE "/proc/globalHbm_fod"
+#define GLOBAL_HBM_FOD_ON "1"
+#define GLOBAL_HBM_FOD_OFF "0"
 
 namespace vendor {
 namespace lineage {
@@ -43,10 +48,14 @@ Return<void> FingerprintInscreen::onFinishEnroll() {
 Return<void> FingerprintInscreen::onPress() {
     this->mGoodixFingerprintDaemon->sendCommand(200001, {},
                                                 [](int, const hidl_vec<signed char>&) {});
+    android::base::WriteStringToFile(GLOBAL_HBM_FOD_ON, GLOBAL_HBM_FOD_MODE);
+    this->mGoodixFingerprintDaemon->sendCommand(200002, {},
+                                                [](int, const hidl_vec<signed char>&) {});
     return Void();
 }
 
 Return<void> FingerprintInscreen::onRelease() {
+    android::base::WriteStringToFile(GLOBAL_HBM_FOD_OFF, GLOBAL_HBM_FOD_MODE);
     this->mGoodixFingerprintDaemon->sendCommand(200003, {},
                                                 [](int, const hidl_vec<signed char>&) {});
     return Void();
