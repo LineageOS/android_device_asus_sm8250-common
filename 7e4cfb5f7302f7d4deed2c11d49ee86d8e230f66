@@ -22,6 +22,52 @@
       "revId": "7e4cfb5f7302f7d4deed2c11d49ee86d8e230f66",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ffebec7c_c95c4c40",
+        "filename": "fod/FingerprintInscreen.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 11883
+      },
+      "writtenOn": "2020-09-03T19:23:26Z",
+      "side": 1,
+      "message": "android::base::WriteStringToFile(GLOBAL_HBM_FOD_ON, GLOBAL_HBM_FOD_PATH)",
+      "range": {
+        "startLine": 62,
+        "startChar": 4,
+        "endLine": 62,
+        "endChar": 44
+      },
+      "revId": "7e4cfb5f7302f7d4deed2c11d49ee86d8e230f66",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "738d404c_c09795ba",
+        "filename": "sepolicy/private/hal_fod_asus_kona.te",
+        "patchSetId": 2
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 11883
+      },
+      "writtenOn": "2020-09-03T19:23:26Z",
+      "side": 1,
+      "message": "Apparently ofstream requires rw_file_perms\nSwitch to android::base::WriteStringToFile",
+      "range": {
+        "startLine": 17,
+        "startChar": 52,
+        "endLine": 17,
+        "endChar": 64
+      },
+      "revId": "7e4cfb5f7302f7d4deed2c11d49ee86d8e230f66",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": true
     }
   ]
 }
