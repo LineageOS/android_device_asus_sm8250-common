@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2ee42f63_725cabcf",
+        "filename": "fod/FingerprintInscreen.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 11883
+      },
+      "writtenOn": "2020-09-03T19:13:05Z",
+      "side": 1,
+      "message": "GLOBAL_HBM_FOD_MODE\nSo that it\u0027s in sync with kernel",
+      "range": {
+        "startLine": 25,
+        "startChar": 8,
+        "endLine": 25,
+        "endChar": 27
+      },
+      "revId": "7e4cfb5f7302f7d4deed2c11d49ee86d8e230f66",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": true
+    }
+  ]
+}
