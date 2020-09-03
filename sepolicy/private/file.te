@@ -10,5 +10,8 @@ type qmipriod_data_file, file_type, data_file_type;
 # Files in proc
 type proc_touchscreen, proc_type, sysfs_type, fs_type;
 
+# Asus proc
+type asus_display_proc_exec, proc_type, sysfs_type, fs_type;
+
 # Files in sysfs
 type sysfs_battery_supply, sysfs_type, fs_type;
