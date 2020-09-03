@@ -12,3 +12,6 @@ binder_call(hal_fod_asus_kona, hal_fingerprint)
 
 # Allow hal_fod_asus_kona to hal_fingerprint_hwservice
 allow hal_fod_asus_kona hal_fingerprint_hwservice:hwservice_manager find;
+
+# Allow hal_fod_asus_kona to read and write to fod proc nodes
+allow hal_fod_asus_kona asus_display_proc_exec:file w_file_perms;
