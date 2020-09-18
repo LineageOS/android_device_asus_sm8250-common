@@ -470,6 +470,12 @@ VENDOR_SKIP_FILES_COMMON=(
     "bin/hw/android.hardware.power@1.2-service"
     "etc/init/android.hardware.power@1.2-service.rc"
 
+    # Thermal
+    "bin/hw/android.hardware.thermal@1.0-service"
+    "etc/init/android.hardware.thermal@1.0-service.rc"
+    "lib/hw/android.hardware.thermal@1.0-impl.so"
+    "lib64/hw/android.hardware.thermal@1.0-impl.so"
+
     # Display (we keep sdmcore prebuilt)
     "etc/vintf/manifest/android.hardware.graphics.mapper-impl-qti-display.xml"
     "lib64/hw/android.hardware.graphics.mapper@3.0-impl-qti-display.so"
