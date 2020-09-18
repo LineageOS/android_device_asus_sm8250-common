@@ -199,7 +199,7 @@ BOARD_ROOT_EXTRA_FOLDERS := \
 TARGET_PROVIDES_QTI_TELEPHONY_JAR := true
 
 # Sepolicy
-include device/qcom/sepolicy/sepolicy.mk
+include device/qcom/sepolicy_vndr/SEPolicy.mk
 
 BOARD_SEPOLICY_DIRS += $(COMMON_PATH)/sepolicy/vendor
 
