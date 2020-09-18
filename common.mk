@@ -98,6 +98,11 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     vendor.display.config@1.12
 
+# HIDL
+PRODUCT_PACKAGES += \
+    libhidltransport \
+    libhwbinder
+
 # fastbootd
 PRODUCT_PACKAGES += \
     fastbootd
