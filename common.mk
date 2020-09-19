@@ -80,10 +80,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     audio.a2dp.default
 
-# Bluetooth
-PRODUCT_PACKAGES += \
-    BluetoothQti
-
 # Boot control
 PRODUCT_PACKAGES += \
     android.hardware.boot@1.0-impl \
