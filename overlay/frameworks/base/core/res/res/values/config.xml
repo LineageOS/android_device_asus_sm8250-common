@@ -421,4 +421,9 @@
 
     <!-- Telephony qualified networks service package name to bind to by default. -->
     <string name="config_qualified_networks_service_package">vendor.qti.iwlan</string>
+
+    <string-array name="config_deviceDisabledComponents" translatable="false">
+        <item>com.qti.slaservice/com.qti.slaservice.SLAService</item>
+        <item>com.qti.slaservice/com.qti.slaservice.SLABootReceiver</item>
+    </string-array>
 </resources>
