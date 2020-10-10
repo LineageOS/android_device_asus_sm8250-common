@@ -78,7 +78,7 @@ etc/permissions/izat.xt.srv.xml
 etc/permissions/privapp-permissions-com.qualcomm.location.xml
 framework/izat.xt.srv.jar
 lib64/liblocationservice_jni.so
--priv-app/com.qualcomm.location/com.qualcomm.location.apk
+# -priv-app/com.qualcomm.location/com.qualcomm.location.apk
 product/lib64/vendor.qti.gnss@1.0.so
 product/lib64/vendor.qti.gnss@1.1.so
 product/lib64/vendor.qti.gnss@1.2.so
