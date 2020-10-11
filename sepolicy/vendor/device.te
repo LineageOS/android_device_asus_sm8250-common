@@ -7,6 +7,7 @@ type modem_block_device, dev_type;
 type modem_efs_partition_device, dev_type;
 type persist_block_device, dev_type;
 type rpmb_device, dev_type;
+type sg_device, dev_type;
 type ssd_block_device, dev_type;
 type uefi_block_device, dev_type;
 type xbl_block_device, dev_type;

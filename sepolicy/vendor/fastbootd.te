@@ -6,7 +6,10 @@ allow fastbootd {
         uefi_block_device
         modem_block_device
         mdtp_device
+        gpt_block_device
 }:blk_file { rw_file_perms };
-')
 
+allow fastbootd sysfs_scsi_devices_0000:dir { search r_dir_perms };
+allow fastbootd sg_device:chr_file rw_file_perms;
 allow fastbootd tmpfs:lnk_file { getattr read };
+')

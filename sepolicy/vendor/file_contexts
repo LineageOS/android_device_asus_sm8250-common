@@ -75,3 +75,6 @@
 # limits Partitions
 /dev/block/platform/soc/1d84000\.ufshc/by-name/limits                u:object_r:limits_block_device:s0
 /dev/block/platform/soc/1d84000\.ufshc/by-name/limits-cdsp           u:object_r:limits_block_device:s0
+
+# SG devices
+/dev/sg[0-9]+                                                        u:object_r:sg_device:s0
