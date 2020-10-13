@@ -47,6 +47,21 @@ function blob_fixup() {
         product/lib64/libdpmframework.so)
             sed -i "s/libhidltransport.so/libcutils-v29.so\x00\x00\x00/" "${2}"
             ;;
+        vendor/bin/hw/android.hardware.neuralnetworks@1.2-service-qti)
+            ;&
+        vendor/bin/hw/android.hardware.usb@1.1-service-qti)
+            ;&
+        vendor/lib64/hw/android.hardware.gnss@2.0-impl-qti.so)
+            ;&
+        vendor/lib64/hw/android.hardware.camera.provider@2.4-impl.so)
+            ;&
+        vendor/lib64/hw/android.hardware.bluetooth@1.0-impl-qti.so)
+            ;&
+        vendor/lib64/unnhal-acc-hvx.so)
+            ;&
+        vendor/lib64/hw/com.qti.chi.override.so)
+            $PATCHELF --add-needed qtimutex.so "${2}"
+            ;;
     esac
 }
 
