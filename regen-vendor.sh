@@ -663,6 +663,10 @@ VENDOR_SKIP_FILES_COMMON=(
     "lib/libOmxVdec.so"
     "lib/libOmxVenc.so"
     "lib/libopus.so"
+    "lib64/vendor.qti.hardware.capabilityconfigstore@1.0.so"
+    "lib/vendor.qti.hardware.capabilityconfigstore@1.0.so"
+    "lib64/libplatformconfig.so"
+    "lib/libplatformconfig.so"
 )
 ALL_SKIP_FILES=("${VENDOR_SKIP_FILES_COMMON[@]}" "${VENDOR_SKIP_FILES_DEVICE[@]}")
 
@@ -680,8 +684,6 @@ function as_module() {
 presign "app/TrustZoneAccessService/TrustZoneAccessService.apk"
 as_module "lib64/libthermalclient.so"
 as_module "lib/libthermalclient.so"
-as_module "lib64/libplatformconfig.so"
-as_module "lib/libplatformconfig.so"
 as_module "etc/vintf/manifest/android.hardware.atrace@1.0-service.xml"
 as_module "etc/vintf/manifest/android.hardware.gnss@2.0-service-qti.xml"
 as_module "etc/vintf/manifest/android.hardware.usb@1.1-service.xml"
