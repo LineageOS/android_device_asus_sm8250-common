@@ -1,0 +1,1 @@
+allow system_app hal_display_postproc_hwservice:hwservice_manager find;
