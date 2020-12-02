@@ -1,3 +1,10 @@
+# Apex
+## Yes, this prop should live in vendor/build.prop, and it does;
+## However, ASUS kernel redirects vendor/build.prop i/o operations
+## to vendor/build_${REGION}.prop which we're using as prebuilts
+## and DO NOT contain this prop (yuck). Thus place it in system too.
+ro.apex.updatable=true
+
 # ACCY
 vendor.asus.accy_gen=3
 vendor.asus.accy.fw_status=000000
