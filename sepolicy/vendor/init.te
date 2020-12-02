@@ -1,0 +1,6 @@
+allow init {
+    xrom_file
+    demoapp_file
+    log_file
+    bat_file
+}:dir mounton;
