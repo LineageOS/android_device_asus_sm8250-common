@@ -1,1 +1,12 @@
-type sysfs_scsi_devices_0000, sysfs_type, fs_type;
+# Files in rootfs
+type bat_file, file_type;
+type demoapp_file, file_type;
+type log_file, file_type;
+type xrom_file, file_type;
+
+# Files in userdata
+type qmipriod_data_file, file_type, data_file_type;
+
+# Files in proc
+type proc_touchscreen, proc_type, sysfs_type, fs_type;
+type asus_display_proc_exec, proc_type;
