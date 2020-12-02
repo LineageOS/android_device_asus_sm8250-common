@@ -1,4 +1,0 @@
-type qmipriod, domain;
-
-r_dir_file(qmipriod, qmipriod_data_file)
-allow qmipriod qmipriod_data_file:file w_file_perms;
