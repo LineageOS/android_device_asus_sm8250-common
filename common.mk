@@ -175,6 +175,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     android.hardware.power@1.2-service-qti
 
+# Snap
+PRODUCT_PACKAGES += \
+    Snap
+
 # Soong namespaces
 PRODUCT_SOONG_NAMESPACES += \
     $(LOCAL_PATH)
