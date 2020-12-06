@@ -112,7 +112,7 @@ product/lib64/vendor.qti.ims.rcsconfig@1.1.so
 product/lib64/vendor.qti.imsrtpservice@2.0.so
 product/lib64/vendor.qti.imsrtpservice@2.1.so
 # Smali edit: https://gist.github.com/luca020400/b0152c9b77e55f50eee0513cf666f61c
--product/priv-app/ims/ims.apk|9e2f751f4798288d0062e028e75f9df9312940f5
+-product/priv-app/ims/ims.apk|d634dda735bc1e462be20cc8608a4b2da00b4a4a
 
 # Power Off Alarm
 -product/app/PowerOffAlarm/PowerOffAlarm.apk
