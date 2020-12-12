@@ -684,6 +684,8 @@ function as_module() {
 presign "app/TrustZoneAccessService/TrustZoneAccessService.apk"
 as_module "lib64/libthermalclient.so"
 as_module "lib/libthermalclient.so"
+as_module "lib64/libfastcvopt.so"
+as_module "lib/libfastcvopt.so"
 as_module "etc/vintf/manifest/android.hardware.atrace@1.0-service.xml"
 as_module "etc/vintf/manifest/android.hardware.gnss@2.0-service-qti.xml"
 as_module "etc/vintf/manifest/android.hardware.usb@1.1-service.xml"
