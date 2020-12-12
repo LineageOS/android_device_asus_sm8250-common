@@ -1,0 +1,4 @@
+allow vendor_qti_init_shell proc_cmdline:file r_file_perms;
+get_prop(vendor_qti_init_shell, exported_wifi_prop)
+allow vendor_qti_init_shell bat_file:dir create_dir_perms;
+allow vendor_qti_init_shell bat_file:file create_file_perms;

@@ -670,7 +670,6 @@ function as_module() {
     sed -i "s|vendor/$1$|-vendor/$1|g" $_output_file
 }
 
-presign "app/TimeService/TimeService.apk"
 presign "app/TrustZoneAccessService/TrustZoneAccessService.apk"
 as_module "lib64/libthermalclient.so"
 as_module "lib/libthermalclient.so"
