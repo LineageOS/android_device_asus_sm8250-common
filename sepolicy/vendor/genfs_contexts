@@ -9,6 +9,8 @@ genfscon sysfs /devices/platform/soc/884000.i2c/i2c-6/6-005e/power_supply/pca946
 genfscon sysfs /devices/platform/soc/884000.i2c/i2c-6/6-0025/power_supply/wireless/type         u:object_r:sysfs_battery_supply:s0
 genfscon sysfs /devices/platform/soc/884000.i2c/i2c-6/6-0025/power_supply/wireless/online       u:object_r:sysfs_battery_supply:s0
 
+genfscon sysfs /devices/platform/soc/c440000.qcom,spmi/spmi-0/spmi0-00/c440000.qcom,spmi:qcom,pm8150@0:qcom,pm8150_rtc/rtc u:object_r:sysfs_rtc:s0
+
 genfscon proc /driver/lcd_code_version                                                          u:object_r:asus_display_proc_exec:s0
 genfscon proc /driver/hbm_off_delay                                                             u:object_r:asus_display_proc_exec:s0
 genfscon proc /driver/panel_reg_rw                                                              u:object_r:asus_display_proc_exec:s0
