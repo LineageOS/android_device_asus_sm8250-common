@@ -1,0 +1,2 @@
+use_vendor_per_mgr(vendor_hal_gnss_qti)
+allow vendor_hal_gnss_qti init:unix_stream_socket connectto;

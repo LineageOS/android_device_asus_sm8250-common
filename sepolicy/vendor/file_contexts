@@ -1,6 +1,6 @@
 # ASUS partitions.
-/dev/block/platform/soc/1d84000\.ufshc/by-name/asusfw_[ab]              u:object_r:custom_ab_block_device:s0
-/dev/block/platform/soc/1d84000\.ufshc/by-name/xrom_[ab]                u:object_r:custom_ab_block_device:s0
+/dev/block/platform/soc/1d84000\.ufshc/by-name/asusfw_[ab]              u:object_r:vendor_custom_ab_block_device:s0
+/dev/block/platform/soc/1d84000\.ufshc/by-name/xrom_[ab]                u:object_r:vendor_custom_ab_block_device:s0
 /dev/block/platform/soc/1d84000\.ufshc/by-name/ADF                      u:object_r:asus_block_device:s0
 /dev/block/platform/soc/1d84000\.ufshc/by-name/APD                      u:object_r:asus_block_device:s0
 /dev/block/platform/soc/1d84000\.ufshc/by-name/asdf                     u:object_r:asdf_block_device:s0
@@ -20,13 +20,9 @@
 /sys/devices/platform/soc/c440000.qcom,spmi/spmi-0/spmi0-02/c440000.qcom,spmi:qcom,pm8150b@2:qcom,qpnp-smb5/thermal_gpio                    u:object_r:sysfs_battery_supply:s0
 /sys/devices/platform/soc/c440000.qcom,spmi/spmi-0/spmi0-02/c440000.qcom,spmi:qcom,pm8150b@2:qcom,qpnp-smb5/TypeC_Side_Detect2              u:object_r:sysfs_battery_supply:s0
 /sys/devices/platform/soc/c440000.qcom,spmi/spmi-0/spmi0-02/c440000.qcom,spmi:qcom,pm8150b@2:vadc@3100/iio:device1/in_temp_wp_therm_input   u:object_r:sysfs_battery_supply:s0
-/sys/devices/virtual/sensors(/.*)?                                                                                                          u:object_r:sysfs_sensors:s0
+/sys/devices/virtual/sensors(/.*)?                                                                                                          u:object_r:vendor_sysfs_sensors:s0
 
 # Binaries
 /vendor/bin/hw/vendor\.lineage\.touch@1\.0-service\.asus_kona                                   u:object_r:hal_lineage_touch_default_exec:s0
 /vendor/bin/hw/vendor\.lineage\.biometrics\.fingerprint\.inscreen@1\.0-service\.asus_kona       u:object_r:hal_fod_asus_kona_exec:s0
-/vendor/bin/qmipriod                                                                            u:object_r:qmipriod_exec:s0
 /vendor/bin/awk                                                                                 u:object_r:vendor_toolbox_exec:s0
-
-# Files in data
-/data/vendor/qmipriod(/.*)?                                             u:object_r:qmipriod_data_file:s0
