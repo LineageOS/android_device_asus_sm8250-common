@@ -420,6 +420,11 @@ VENDOR_SKIP_FILES_COMMON=(
 
     # Rootdir
     "etc/fstab.qcom"
+    "etc/init/hw/init.asus.usb.rc"
+    "etc/init/hw/init.qcom.factory.rc"
+    "etc/init/hw/init.qcom.rc"
+    "etc/init/hw/init.recovery.qcom.rc"
+    "etc/init/hw/init.target.rc"
 
     # libhardware
     "lib64/hw/audio.primary.default.so"
