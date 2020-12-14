@@ -296,6 +296,7 @@ VENDOR_SKIP_FILES_COMMON=(
     "bin/vndservice"
     "bin/vndservicemanager"
     "etc/init/vndservicemanager.rc"
+    "etc/public.libraries.txt"
     "lib/libhwminijail.so"
     "lib/libgui_vendor.so"
 
