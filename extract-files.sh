@@ -30,6 +30,14 @@ if [ ! -f "${HELPER}" ]; then
 fi
 source "${HELPER}"
 
+function blob_fixup() {
+    case "${1}" in
+        etc/permissions/qti_libpermissions.xml)
+            sed -i 's/<library name="android.hidl.manager-V1.0-java"/<library name="android.hidl.manager@1.0-java"/g' "${2}"
+            ;;
+    esac
+}
+
 # Default to sanitizing the vendor folder before extraction
 CLEAN_VENDOR=true
 
@@ -72,10 +80,5 @@ for BLOB_LIST in "${MY_DIR}"/../"${DEVICE}"/proprietary-files*.txt; do
     extract "${BLOB_LIST}" "${SRC}" \
             "${KANG}" --section "${SECTION}"
 done
-
-COMMON_BLOB_ROOT="${LINEAGE_ROOT}/vendor/${VENDOR}/${DEVICE_COMMON}/proprietary"
-
-sed -i 's/<library name="android.hidl.manager-V1.0-java"/<library name="android.hidl.manager@1.0-java"/g' \
-        "${COMMON_BLOB_ROOT}/etc/permissions/qti_libpermissions.xml"
 
 "${MY_DIR}/setup-makefiles.sh"
