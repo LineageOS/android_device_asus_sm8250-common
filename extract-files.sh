@@ -38,6 +38,9 @@ function blob_fixup() {
         vendor/etc/init/init.embmssl_server.rc)
             sed -i '/vendor.qti.hardware.embmssl@1.0::IEmbms/d' "${2}"
             ;;
+        vendor/bin/hw/android.hardware.media.omx@1.0-service)
+            sed -i "s/libavservices_minijail_vendor.so/libavservices_minijail.so\x00\x00\x00\x00\x00\x00\x00/" "${2}"
+            ;;
     esac
 }
 
