@@ -35,6 +35,9 @@ function blob_fixup() {
         etc/permissions/qti_libpermissions.xml)
             sed -i 's/<library name="android.hidl.manager-V1.0-java"/<library name="android.hidl.manager@1.0-java"/g' "${2}"
             ;;
+        vendor/etc/init/init.embmssl_server.rc)
+            sed -i '/vendor.qti.hardware.embmssl@1.0::IEmbms/d' "${2}"
+            ;;
     esac
 }
 
