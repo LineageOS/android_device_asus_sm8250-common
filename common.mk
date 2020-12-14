@@ -90,8 +90,11 @@ PRODUCT_PACKAGES_DEBUG += \
 
 # Common init scripts
 PRODUCT_PACKAGES += \
+    init.asus.usb.rc \
     init.qcom.rc \
+    init.qcom.factory.rc \
     init.recovery.qcom.rc \
+    init.target.rc \
     fstab.qcom
 
 PRODUCT_COPY_FILES += \
