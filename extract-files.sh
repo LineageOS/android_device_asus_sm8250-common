@@ -61,6 +61,13 @@ function blob_fixup() {
             ;&
         vendor/lib64/hw/com.qti.chi.override.so)
             sed -i "s/libhidltransport.so/qtimutex.so\x00\x00\x00\x00\x00\x00\x00\x00/" "${2}"
+            ;&
+        vendor/lib64/libril-qc-hal-qmi.so)
+            ;&
+        vendor/lib64/libssc.so)
+            ;&
+        vendor/lib64/libcamxncs.so)
+            $PATCHELF --add-needed libcomparetf2.so "${2}"
             ;;
     esac
 }
