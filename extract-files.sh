@@ -69,6 +69,11 @@ function blob_fixup() {
         vendor/lib64/libcamxncs.so)
             $PATCHELF --add-needed libcomparetf2.so "${2}"
             ;;
+        product/lib64/libsecureuisvc_jni.so)
+            ;&
+        product/lib64/libsystemhelper_jni.so)
+            sed -i "s/libhidltransport.so/libgui_shim.so\x00\x00\x00\x00\x00/" "${2}"
+            ;;
     esac
 }
 
