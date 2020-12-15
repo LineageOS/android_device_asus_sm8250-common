@@ -134,6 +134,8 @@ product/lib64/vendor.qti.hardware.tui_comm@1.0.so
 
 # System Helper
 -product/app/com.qualcomm.qti.services.systemhelper/com.qualcomm.qti.services.systemhelper.apk
+product/lib64/vendor.qti.hardware.embmssl@1.0.so
+product/lib64/vendor.qti.hardware.embmssl@1.0-adapter-helper.so
 product/lib64/libsystemhelper_jni.so
 
 # Telephony
