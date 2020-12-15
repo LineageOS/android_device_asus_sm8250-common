@@ -61,6 +61,16 @@ function blob_fixup() {
             ;&
         vendor/lib64/hw/com.qti.chi.override.so)
             $PATCHELF --add-needed qtimutex.so "${2}"
+            ;&
+            # FALLTHROUGH: most of the above blobs also need libcomparetf2
+        vendor/lib64/libril-qc-hal-qmi.so)
+            ;&
+        vendor/lib64/libssc.so)
+            ;&
+        vendor/lib64/libcamxncs.so)
+            ;&
+        vendor/lib64/libvidhance.so)
+            $PATCHELF --add-needed libcomparetf2.so "${2}"
             ;;
     esac
 }
