@@ -563,6 +563,7 @@ VENDOR_SKIP_FILES_COMMON=(
     "bin/hw/android.hardware.cas@1.1-service"
     "etc/init/android.hardware.cas@1.1-service.rc"
     "etc/vintf/manifest/android.hardware.cas@1.1-service.xml"
+    "lib/libgui_vendor.so"
     "lib/libavservices_minijail_vendor.so"
     "lib/libstagefright_amrnb_common.so"
     "lib/libstagefright_enc_common.so"
