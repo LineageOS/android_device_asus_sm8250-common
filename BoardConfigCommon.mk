@@ -19,6 +19,7 @@ BOARD_VENDOR := asus
 COMMON_PATH := device/asus/sm8250-common
 
 BUILD_BROKEN_USES_BUILD_COPY_HEADERS := true
+BUILD_WITHOUT_VENDOR := true
 
 # Architecture
 TARGET_ARCH := arm64
