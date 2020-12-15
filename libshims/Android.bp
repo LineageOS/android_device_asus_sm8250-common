@@ -4,3 +4,13 @@ cc_library {
     compile_multilib: "64",
     vendor: true,
 }
+
+cc_library {
+    name: "libgui_shim",
+    srcs: ["SurfaceComposerClient.cpp"],
+    shared_libs: ["libgui"],
+    cflags: [
+        "-DNO_BUFFERHUB",
+        "-DNO_INPUT",
+    ],
+}
