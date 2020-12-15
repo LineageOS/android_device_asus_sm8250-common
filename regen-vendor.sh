@@ -292,11 +292,12 @@ VENDOR_SKIP_FILES_COMMON=(
     "overlay/FrameworksResTarget.apk"
     "overlay/TelephonyResCommon.apk"
 
-    # Hidl
+    # VNDK
     "bin/vndservice"
     "bin/vndservicemanager"
     "etc/init/vndservicemanager.rc"
     "lib/libhwminijail.so"
+    "lib/libgui_vendor.so"
 
     # Sepolicy
     "etc/selinux/vendor_file_contexts"
