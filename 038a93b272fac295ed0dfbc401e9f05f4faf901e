@@ -22,6 +22,30 @@
       "revId": "038a93b272fac295ed0dfbc401e9f05f4faf901e",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "983f3e3d_6421acd1",
+        "filename": "extract-files.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 18205
+      },
+      "writtenOn": "2020-12-16T12:09:46Z",
+      "side": 1,
+      "message": "Nope, intended. Should have commented it but really I don\u0027t plan on merging this chain, waiting for newer blobs",
+      "parentUuid": "034618a5_a985ef6f",
+      "range": {
+        "startLine": 64,
+        "startChar": 12,
+        "endLine": 64,
+        "endChar": 14
+      },
+      "revId": "038a93b272fac295ed0dfbc401e9f05f4faf901e",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": true
     }
   ]
 }
