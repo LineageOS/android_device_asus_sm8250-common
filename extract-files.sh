@@ -68,9 +68,11 @@ function blob_fixup() {
         vendor/lib64/libssc.so)
             ;&
         vendor/lib64/libcamxncs.so)
-            ;&
+            $PATCHELF --add-needed libcomparetf2.so "${2}"
+            ;;
         vendor/lib64/libvidhance.so)
             $PATCHELF --add-needed libcomparetf2.so "${2}"
+            $PATCHELF --add-needed libxditk_DIT_MSMv1.so "${2}"
             ;;
     esac
 }
