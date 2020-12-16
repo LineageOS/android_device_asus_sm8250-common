@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "034618a5_a985ef6f",
+        "filename": "extract-files.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 13648
+      },
+      "writtenOn": "2020-12-16T12:04:15Z",
+      "side": 1,
+      "message": "Derp?",
+      "range": {
+        "startLine": 64,
+        "startChar": 12,
+        "endLine": 64,
+        "endChar": 14
+      },
+      "revId": "038a93b272fac295ed0dfbc401e9f05f4faf901e",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": true
+    }
+  ]
+}
