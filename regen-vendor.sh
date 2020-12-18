@@ -446,6 +446,7 @@ VENDOR_SKIP_FILES_COMMON=(
     "lib/libwifi-hal-ctrl.so"
     "lib/libwifi-hal-qcom.so"
     "lib/libwpa_client.so"
+    "lib64/libwifi-hal.so"
     "lib64/libwifi-hal-ctrl.so"
     "lib64/libwifi-hal-qcom.so"
     "lib64/libwpa_client.so"
