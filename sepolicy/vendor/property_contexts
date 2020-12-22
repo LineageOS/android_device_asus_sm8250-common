@@ -1,1 +1,2 @@
 vendor.asus.dfps              u:object_r:vendor_dfps_prop:s0
+vendor.bluetooth.a2dp.getSinkLatency    u:object_r:vendor_bluetooth_prop:s0
