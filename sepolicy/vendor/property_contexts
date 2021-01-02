@@ -2,3 +2,4 @@ vendor.asus.dfps              u:object_r:vendor_dfps_prop:s0
 vendor.bluetooth.a2dp.getSinkLatency    u:object_r:vendor_bluetooth_prop:s0
 vendor.camera.                u:object_r:vendor_camera_prop:s0
 vendor.goodix.                u:object_r:vendor_gx_fpd_prop:s0
+persist.vendor.nfc.           u:object_r:vendor_nfc_prop:s0
