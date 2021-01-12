@@ -1,0 +1,5 @@
+type hal_fod_asus_kona, domain;
+hal_server_domain(hal_fod_asus_kona, hal_lineage_fod)
+
+type hal_fod_asus_kona_exec, vendor_file_type, exec_type, file_type;
+init_daemon_domain(hal_fod_asus_kona)

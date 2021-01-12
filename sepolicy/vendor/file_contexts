@@ -23,9 +23,10 @@
 /sys/devices/virtual/sensors(/.*)?                                                                                                          u:object_r:sysfs_sensors:s0
 
 # Binaries
-/vendor/bin/hw/vendor\.lineage\.touch@1\.0-service\.asus_kona           u:object_r:hal_lineage_touch_default_exec:s0
-/vendor/bin/qmipriod                                                    u:object_r:qmipriod_exec:s0
-/vendor/bin/awk                                                         u:object_r:vendor_toolbox_exec:s0
+/vendor/bin/hw/vendor\.lineage\.touch@1\.0-service\.asus_kona                                   u:object_r:hal_lineage_touch_default_exec:s0
+/vendor/bin/hw/vendor\.lineage\.biometrics\.fingerprint\.inscreen@1\.0-service\.asus_kona       u:object_r:hal_fod_asus_kona_exec:s0
+/vendor/bin/qmipriod                                                                            u:object_r:qmipriod_exec:s0
+/vendor/bin/awk                                                                                 u:object_r:vendor_toolbox_exec:s0
 
 # Files in data
 /data/vendor/qmipriod(/.*)?                                             u:object_r:qmipriod_data_file:s0
