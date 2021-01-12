@@ -22,8 +22,10 @@
 #include <hidl/HidlTransportSupport.h>
 
 #define GLOBAL_HBM_FOD_MODE "/proc/globalHbm_fod"
+#define FOD_EVENT_PATH "/proc/driver/fod_event"
 #define GLOBAL_HBM_FOD_ON "1"
 #define GLOBAL_HBM_FOD_OFF "0"
+#define FOD_WAKEUP_EVENT "33"
 
 namespace vendor {
 namespace lineage {
@@ -62,6 +64,7 @@ Return<void> FingerprintInscreen::onRelease() {
 }
 
 Return<void> FingerprintInscreen::onShowFODView() {
+    android::base::WriteStringToFile(FOD_WAKEUP_EVENT, FOD_EVENT_PATH);;
     return Void();
 }
 
