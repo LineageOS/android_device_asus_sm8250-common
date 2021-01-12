@@ -3,3 +3,5 @@ vendor.bluetooth.a2dp.getSinkLatency    u:object_r:vendor_bluetooth_prop:s0
 vendor.camera.                u:object_r:vendor_camera_prop:s0
 vendor.goodix.                u:object_r:vendor_gx_fpd_prop:s0
 persist.vendor.nfc.           u:object_r:vendor_nfc_prop:s0
+vendor.gsm.sim1.present       u:object_r:vendor_rild_prop:s0
+vendor.gsm.sim2.present       u:object_r:vendor_rild_prop:s0
