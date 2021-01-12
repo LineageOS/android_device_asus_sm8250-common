@@ -3,3 +3,12 @@ hal_server_domain(hal_fod_asus_kona, hal_lineage_fod)
 
 type hal_fod_asus_kona_exec, vendor_file_type, exec_type, file_type;
 init_daemon_domain(hal_fod_asus_kona)
+
+# Allow access to the HALs
+hal_client_domain(hal_fod_asus_kona, hal_fingerprint)
+
+# Allow binder communication with hal_fingerprint
+binder_call(hal_fod_asus_kona, hal_fingerprint)
+
+# Allow hal_fod_asus_kona to hal_fingerprint_hwservice
+allow hal_fod_asus_kona hal_fingerprint_hwservice:hwservice_manager find;

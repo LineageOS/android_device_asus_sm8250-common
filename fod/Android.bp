@@ -30,5 +30,6 @@ cc_binary {
         "libhwbinder",
         "libutils",
         "vendor.lineage.biometrics.fingerprint.inscreen@1.0",
+        "//device/asus/sm8250-common:vendor.goodix.hardware.biometrics.fingerprint@2.1",
     ],
 }
