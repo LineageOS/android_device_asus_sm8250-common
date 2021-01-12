@@ -1,3 +1,4 @@
 type vendor_dfps_prop, property_type;
 type vendor_gx_fpd_prop, property_type;
 type vendor_nfc_prop, property_type;
+type vendor_rild_prop, property_type;
