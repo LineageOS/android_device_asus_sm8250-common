@@ -15,6 +15,7 @@ genfscon proc /driver/panel_reg_rw                                              
 genfscon proc /driver/hbm_on_delay                                                              u:object_r:asus_display_proc_exec:s0
 genfscon proc /driver/hdcp_disable                                                              u:object_r:asus_display_proc_exec:s0
 genfscon proc /driver/lcd_fps                                                                   u:object_r:asus_display_proc_exec:s0
+genfscon proc /driver/fod_event                                                                 u:object_r:asus_display_proc_exec:s0
 genfscon proc /lcd_unique_id                                                                    u:object_r:asus_display_proc_exec:s0
 genfscon proc /globalHbm_fod                                                                    u:object_r:asus_display_proc_exec:s0
 genfscon proc /lcd_stage                                                                        u:object_r:asus_display_proc_exec:s0
