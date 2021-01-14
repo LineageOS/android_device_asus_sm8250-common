@@ -18,7 +18,12 @@
 
 #include "FingerprintInscreen.h"
 
+#include <android-base/file.h>
 #include <hidl/HidlTransportSupport.h>
+
+#define LOCAL_HBM_MODE "/proc/localHbm"
+#define LOCAL_HBM_ON "1"
+#define LOCAL_HBM_OFF "0"
 
 namespace vendor {
 namespace lineage {
@@ -43,10 +48,14 @@ Return<void> FingerprintInscreen::onFinishEnroll() {
 Return<void> FingerprintInscreen::onPress() {
     this->mGoodixFingerprintDaemon->sendCommand(200001, {},
                                                 [](int, const hidl_vec<signed char>&) {});
+    android::base::WriteStringToFile(LOCAL_HBM_ON, LOCAL_HBM_MODE);
+    this->mGoodixFingerprintDaemon->sendCommand(200002, {},
+                                                [](int, const hidl_vec<signed char>&) {});
     return Void();
 }
 
 Return<void> FingerprintInscreen::onRelease() {
+    android::base::WriteStringToFile(LOCAL_HBM_OFF, LOCAL_HBM_MODE);
     this->mGoodixFingerprintDaemon->sendCommand(200003, {},
                                                 [](int, const hidl_vec<signed char>&) {});
     return Void();
