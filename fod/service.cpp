@@ -16,8 +16,12 @@
 
 #define LOG_TAG "lineage.biometrics.fingerprint.inscreen@1.0-service.asus_kona"
 
+#include <filesystem>
+
+#include <android-base/file.h>
 #include <android-base/logging.h>
 #include <hidl/HidlTransportSupport.h>
+#include <unistd.h>
 
 #include "FingerprintInscreen.h"
 
@@ -30,7 +34,27 @@ using vendor::lineage::biometrics::fingerprint::inscreen::V1_0::implementation::
 using android::OK;
 using android::status_t;
 
+void waitForGoodix() {
+    while (true) {
+        LOG(INFO) << "Looking for goodix_ts input device...";
+        for(auto& dentry : std::filesystem::directory_iterator("/sys/class/input")) {
+            if (dentry.is_directory() &&
+                dentry.path().stem().string().rfind("input",0) == 0) {
+                std::string dev_name;
+                android::base::ReadFileToString(dentry.path() / "name", &dev_name);
+                if (dev_name == "goodix_ts\n") {
+                    LOG(INFO) << "Found goodix_ts at " << dentry.path();
+                    return;
+                }
+            }
+        }
+        usleep(100 * 1000);
+    }
+}
+
 int main() {
+    waitForGoodix();
+
     android::sp<IFingerprintInscreen> service = new FingerprintInscreen();
 
     configureRpcThreadpool(1, true);

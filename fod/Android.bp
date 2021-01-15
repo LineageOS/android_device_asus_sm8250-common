@@ -32,4 +32,5 @@ cc_binary {
         "vendor.lineage.biometrics.fingerprint.inscreen@1.0",
         "//device/asus/sm8250-common:vendor.goodix.hardware.biometrics.fingerprint@2.1",
     ],
+    static_libs: ["libc++fs"],
 }

@@ -15,3 +15,5 @@ allow hal_fod_asus_kona hal_fingerprint_hwservice:hwservice_manager find;
 
 # Allow hal_fod_asus_kona to read and write to fod proc nodes
 allow hal_fod_asus_kona asus_display_proc_exec:file w_file_perms;
+
+r_dir_file(hal_fod_asus_kona, sysfs)
