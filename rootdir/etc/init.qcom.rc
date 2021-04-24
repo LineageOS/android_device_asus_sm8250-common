@@ -1,4 +1,4 @@
-# Copyright (c) 2009-2012, 2014-2019, The Linux Foundation. All rights reserved.
+# Copyright (c) 2009-2012, 2014-2020, The Linux Foundation. All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
@@ -25,6 +25,7 @@
 # ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
 
+
 import /vendor/etc/init/hw/init.asus.usb.rc
 import /vendor/etc/init/hw/init.target.rc
 import /vendor/etc/init/hw/init.qcom.factory.rc
@@ -41,6 +42,8 @@ import init.asus.thermald_ZS670KS.rc
 on early-init
     mount debugfs debugfs /sys/kernel/debug
     chmod 0755 /sys/kernel/debug
+    mount tracefs tracefs /sys/kernel/tracing
+    chmod 0755 /sys/kernel/tracing
 
   # create symlink for vendor mount points
     symlink /vendor/firmware_mnt /firmware
@@ -52,6 +55,10 @@ on early-init
     chown system graphics /sys/kernel/debug/dri/0/debug/recovery_reg
     chown system graphics /sys/kernel/debug/dri/0/debug/recovery_dbgbus
     chown system graphics /sys/kernel/debug/dri/0/debug/recovery_vbif_dbgbus
+    chown system graphics /sys/kernel/debug/dri/0/debug/recovery_dsi_dbgbus
+
+  # Change ownership of sysfs power control node
+    chown system graphics /sys/class/drm/card0/device/power/control
 
     # Change ownership of sw_sync node
     chown system graphics /sys/kernel/debug/sync/sw_sync
@@ -85,41 +92,16 @@ on early-boot
     write /sys/kernel/boot_adsp/boot 1
     write /sys/kernel/boot_cdsp/boot 1
     write /sys/devices/virtual/npu/msm_npu/boot 1
-    write /sys/kernel/boot_slpi/boot 1
     write /sys/devices/virtual/cvp/cvp/boot 1
-    exec u:r:qti_init_shell:s0 -- /vendor/bin/init.qcom.early_boot.sh
-    exec u:r:qti_init_shell:s0 -- /vendor/bin/init.qti.can.sh
+    exec u:r:vendor_qti_init_shell:s0 -- /vendor/bin/init.qcom.early_boot.sh
+    exec u:r:vendor_qti_init_shell:s0 -- /vendor/bin/init.qti.can.sh
+    setprop ro.sf.lcd_density ${vendor.display.lcd_density}
 
     # set wifi link file.
     setprop wlan.driver.status unloaded
     setprop vendor.wlan.softap.driver.status unloaded
     setprop vendor.bluetooth.status off
-    setprop persist.vendor.asus.wlandriver.ver 1
-
-    # for backward compatibility
-    chown system system /persist/sensors
-    chown system system /persist/sensors/registry
-    chown system system /persist/sensors/registry/registry
-    chown system system /persist/sensors/registry/registry/sensors_registry
-    chown system system /persist/sensors/sensors_settings
-    chown system system /persist/sensors/registry/config
-    chmod 0664 /persist/sensors/sensors_settings
-
-    # ASUS_BSP +++ ClayWang "For checking support front RGB or not"
-    setprop ro.asus.screen.colortemp.enable 0
-    # ASUS_BSP --- ClayWang "For checking support front RGB or not"
-    
-    chown system system /mnt/vendor/persist/sensors
-    chown system system /mnt/vendor/persist/sensors/sns.reg
-    chown system system /mnt/vendor/persist/sensors/sensors_list.txt
-    chown system system /mnt/vendor/persist/sensors/registry
-    chown system system /mnt/vendor/persist/sensors/registry/registry
-    chown system system /mnt/vendor/persist/sensors/registry/registry/sensors_registry
-    chown system system /mnt/vendor/persist/sensors/sensors_settings
-    chown system system /mnt/vendor/persist/sensors/registry/sns_reg_config
-    chown system system /mnt/vendor/persist/sensors/registry/sns_reg_version
-    chown system system /mnt/vendor/persist/sensors/registry/config
-    chmod 0664 /mnt/vendor/persist/sensors/sensors_settings
+    setprop persist.vendor.asus.wlandriver.ver 2
 
     chown system system /mnt/vendor/persist/data/pfm/licenses
     chmod 0775 /mnt/vendor/persist/data/pfm/licenses
@@ -233,15 +215,15 @@ on boot
     chown system system /sys/class/sensors/apds9930-proximity/enable
     chown system system /sys/class/sensors/apds9930-proximity/poll_delay
 
-    # Allow access to UFS device attributes on sysfs
-    chown system system /sys/devices/platform/soc/1d84000.ufshc/auto_hibern8
-    chmod 0660 /sys/devices/platform/soc/1d84000.ufshc/auto_hibern8
-
     # Create directory used for display
     # for backward compatibility
     mkdir /persist/display 0770 system graphics
     mkdir /mnt/vendor/persist/display 0770 system graphics
 
+    # ASUS_BSP +++ ClayWang "For checking support front RGB or not"
+    setprop ro.asus.screen.colortemp.enable 0
+    # ASUS_BSP --- ClayWang "For checking support front RGB or not"
+    
     # Create vpp directory
     mkdir /mnt/vendor/persist/vpp 0770 media media
 
@@ -249,9 +231,8 @@ on boot
     # Create hvdcp_opti directory
     mkdir /mnt/vendor/persist/hvdcp_opti 0770 root system
 
-    #sensors log dir
-    mkdir /data/vendor/sensors
-    chown system system /data/vendor/sensors
+    # limit discard size to 128MB in order to avoid long IO latency
+    write /sys/block/sda/queue/discard_max_bytes 134217728
 
     #ASUS_BSP +++ ClayWang "Proximity/Light sensor"
     chown system shell /sys/class/sensors/psensor/switch
@@ -261,6 +242,8 @@ on boot
     chown system shell /sys/class/sensors/psensor/proxm
     chown system shell /sys/class/sensors/psensor/load_cal
     chown system shell /sys/class/sensors/psensor/selection
+    chown system shell /sys/class/sensors/psensor/read_reg
+    chown system shell /sys/class/sensors/psensor/write_reg
     chown system shell /sys/class/sensors/psensor_2nd/switch
     chown system shell /sys/class/sensors/psensor_2nd/inf_cal
     chown system shell /sys/class/sensors/psensor_2nd/hi_cal
@@ -268,17 +251,22 @@ on boot
     chown system shell /sys/class/sensors/psensor_2nd/proxm
     chown system shell /sys/class/sensors/psensor_2nd/load_cal
     chown system shell /sys/class/sensors/psensor_2nd/selection
+    chown system shell /sys/class/sensors/psensor_2nd/read_reg
+    chown system shell /sys/class/sensors/psensor_2nd/read_reg
     
     chown system shell /sys/class/sensors/lsensor/switch
     chown system shell /sys/class/sensors/lsensor/selection
     chown system shell /sys/class/sensors/lsensor/cal
     chown system shell /sys/class/sensors/lsensor/adc
+    chown system shell /sys/class/sensors/lsensor/read_reg
+    chown system shell /sys/class/sensors/lsensor/write_reg
     chown system shell /sys/class/sensors/lsensor_2nd/switch
     chown system shell /sys/class/sensors/lsensor_2nd/selection
     chown system shell /sys/class/sensors/lsensor_2nd/cal
     chown system shell /sys/class/sensors/lsensor_2nd/adc
     #chown system shell /sys/class/sensors/frgbsensor/switch
     #ASUS_BSP --- ClayWang "Proximity/Light sensor"
+    write /sys/snt8100fsr/version_info 1
     
 # msm specific files that need to be created on /data
 on post-fs-data
@@ -331,14 +319,22 @@ on post-fs-data
     mkdir /data/vendor/sla 0775 system system
     copy /vendor/etc/sla/slad.conf /data/vendor/sla/slad.conf
     copy /vendor/etc/sla/slad_data_iface.conf /data/vendor/sla/slad_data_iface.conf
-    copy /vendor/etc/sla/slad_num_iface.conf /data/vendor/sla/slad_num_iface.conf
+    copy /vendor/etc/sla/slad_wlan0_iface.conf /data/vendor/sla/slad_wlan0_iface.conf
+    copy /vendor/etc/sla/slad_wlan1_iface.conf /data/vendor/sla/slad_wlan1_iface.conf
     copy /vendor/etc/sla/slmAppUseCase.conf /data/vendor/sla/slmAppUseCase.conf
+    copy /vendor/etc/sla/slad_num_iface.conf /data/vendor/sla/slad_num_iface.conf
     copy /vendor/etc/sla/slm_supported_list.xml /data/vendor/sla/slm_supported_list.xml
+
     chmod 0664 /data/vendor/sla/slad.conf
     chmod 0664 /data/vendor/sla/slad_data_iface.conf
+    chmod 0664 /data/vendor/sla/slad_wlan0_iface.conf
+    chmod 0664 /data/vendor/sla/slad_wlan1_iface.conf
     chmod 0664 /data/vendor/sla/slad_num_iface.conf
     chmod 0664 /data/vendor/sla/slm_supported_list.xml
+
     chown system system /data/vendor/sla/slad_data_iface.conf
+    chown system system /data/vendor/sla/slad_wlan0_iface.conf
+    chown system system /data/vendor/sla/slad_wlan1_iface.conf
     chown system system /data/vendor/sla/slad_num_iface.conf
     chmod 0664 /data/vendor/sla/slmAppUseCase.conf
 
@@ -422,6 +418,11 @@ on post-fs-data
     copy /vendor/radio/qcril_database/qcril.db /data/vendor/radio/qcril_prebuilt.db
     chown radio radio /data/vendor/radio/qcril_prebuilt.db
     chmod 0660 /data/vendor/radio/qcril_prebuilt.db
+    copy /vendor/radio/qcril_database/qcrilNr.db /data/vendor/radio/qcrilNr_prebuilt.db
+    copy /vendor/etc/qcril_database/qcrilNr.db /data/vendor/radio/qcrilNr_prebuilt.db
+    chown radio radio /data/vendor/radio/qcrilNr_prebuilt.db
+    chmod 0660 /data/vendor/radio/qcrilNr_prebuilt.db
+
     # File flags for prebuilt ril db file
     write /data/vendor/radio/prebuilt_db_support 1
     chown radio radio /data/vendor/radio/prebuilt_db_support
@@ -453,9 +454,6 @@ on post-fs-data
     #Create dir for TUI
     mkdir /data/vendor/tui 0700 system drmrpc
 
-    #Start move time data to /data/vendor once post-fs-data done
-    start vendor.move_time_data
-    
     #ASUS_BSP +++ ClayWang "Proximity/Light sensor"
     write /sys/class/sensors/psensor/load_cal 1
     write /sys/class/sensors/psensor_2nd/load_cal 1
@@ -474,6 +472,30 @@ on property:vendor.sla.sls_change_iface=*
     stop sls_notify
     start sls_notify
 
+service slad_init_notify /system/bin/slad_init_notify
+    class main
+    user root
+    group root
+    oneshot
+    disabled
+    seclabel u:r:slad_init_notify:s0
+
+on property:vendor.sla.slad_init_notify=*
+    stop slad_init_notify
+    start slad_init_notify
+
+on property:persist.vendor.asus.wifi.verboselogging=*
+    stop wifi_logtool
+    start wifi_logtool
+
+service wifi_logtool /system/bin/wifi_logtool
+    class core
+    user root
+    group root
+    oneshot
+    disabled
+    seclabel u:r:wifi_logtool:s0
+ 
 service nqnfcinfo /system/vendor/bin/nqnfcinfo
     class late_start
     group nfc
@@ -555,6 +577,12 @@ service tcpdump-warp /system/bin/netlog.sh
     disabled
     seclabel u:r:dumpstate:s0
 
+on property:persist.vendor.asus.netlog.enable=1
+start tcpdump-warp
+
+on property:persist.vendor.asus.netlog.enable=0
+stop tcpdump-warp
+
 #AS-K yujoe Workaround for unable to get dsi hndl issue+
 on property:vendor.radio.restart.netmgrd=*
     restart vendor.netmgrd
@@ -568,13 +596,14 @@ on property:persist.vendor.sys.rawdump_copy=0
 
 on property:sys.boot_completed=1
     write /dev/kmsg "Boot completed "
-    #Reset read ahead for dm-0, dm-1 and dm-2 to 512kb
+    #Reset read ahead for dm-0 and dm-1 to 512kb
     write /sys/block/dm-0/queue/read_ahead_kb 512
     write /sys/block/dm-1/queue/read_ahead_kb 512
-    write /sys/block/dm-2/queue/read_ahead_kb 512
     #WDSP FW boot sysfs node used by STHAL
     chown media audio /sys/kernel/wdsp0/boot
     chown media audio /sys/kernel/wcd_cpe0/fw_name
+    #Reinit lmkd to reconfigure lmkd properties
+    setprop lmkd.reinit 1
 
 on property:persist.vendor.radio.atfwd.start=false
     stop vendor.atfwd
@@ -582,26 +611,20 @@ on property:persist.vendor.radio.atfwd.start=false
 on property:vendor.radio.atfwd.start=false
     stop vendor.atfwd
 
+# corefile limit
+on property:persist.debug.trace=1
+    mkdir /data/core 0777 root root
+    write /proc/sys/kernel/core_pattern "/data/core/%E.%p.%e"
+
 on property:init.svc.wpa_supplicant=stopped
     stop dhcpcd
 
-on property:vendor.bluetooth.dun.status=running
-    start vendor.bt-dun
-
-on property:vendor.bluetooth.dun.status=stopped
-    stop vendor.bt-dun
-
-on property:ro.bluetooth.ftm_enabled=true
-    start ftmd
-
-on property:vendor.bluetooth.startbtlogger=true
-    start vendor.bt_logger
-
-on property:vendor.bluetooth.startbtlogger=false
-    stop vendor.bt_logger
-
 on property:vendor.media.target.version=*
     setprop vendor.sys.media.target.version ${vendor.media.target.version}
+
+on property:vendor.media.target_variant=*
+    setprop ro.media.xml_variant.codecs ${vendor.media.target_variant}
+    setprop ro.media.xml_variant.codecs_performance ${vendor.media.target_variant}
 
 service qcom-c_core-sh  /vendor/bin/init.qcom.class_core.sh
     class core
@@ -627,17 +650,6 @@ service vendor.country /vendor/bin/sh /vendor/bin/country.sh
 service qcom-c_main-sh /vendor/bin/init.class_main.sh
     class main
     user root
-    group root system
-    oneshot
-
-on property:vendor.tel.camera.on=*
-    restart vendor.antennaswap
-
-service vendor.antennaswap /vendor/bin/antennaswap
-    class core
-    user radio
-    group oem_2901 radio
-    disabled
     oneshot
 
 on property:vold.decrypt=trigger_restart_framework
@@ -663,43 +675,10 @@ service irsc_util /vendor/bin/irsc_util "/vendor/etc/sec_config"
     user root
     oneshot
 
-service vendor.bt-dun /system/bin/dun-server /dev/smd7 /dev/rfcomm0
-    class late_start
-    user bluetooth
-    group bluetooth net_bt_admin inet
-    disabled
-    oneshot
-
-service vendor.bt_logger /system/bin/bt_logger
-   user bluetooth
-   group bluetooth net_bt_admin sdcard_rw sdcard_r media_rw
-   class late_start
-   disabled
-   oneshot
-
-service ftmd /system/bin/logwrapper /system/bin/ftmdaemon
-    class late_start
-    user root
-    group bluetooth net_bt_admin misc diag net_bt
-    disabled
-    oneshot
-
 service qmiproxy /system/bin/qmiproxy
     class main
     user radio
     group radio diag
-    disabled
-
-service vendor.sensors /vendor/bin/sscrpcd sensorspd
-    class early_hal
-    user system
-    group system wakelock
-    capabilities BLOCK_SUSPEND
-
-service vendor.sensors.qti /vendor/bin/sensors.qti
-    class core
-    user system
-    group system
     disabled
 
 # Adjust socket buffer to enlarge TCP receive window for high bandwidth
@@ -894,16 +873,11 @@ service qcom-sh /vendor/bin/init.qcom.sh
     user root
     group root system radio
     oneshot
-
-service vendor-sensor-sh /vendor/bin/init.qcom.sensors.sh
-    class core
-    user root
-    oneshot
-
-service crashdata-sh /vendor/bin/init.qcom.crashdata.sh
-    class late_start
-    user root
-    oneshot
+# Remove since is deprecated but throws AVC denial.
+# service crashdata-sh /vendor/bin/init.qcom.crashdata.sh
+#    class late_start
+#    user root
+#    oneshot
 
 service qcom-post-boot /vendor/bin/init.qcom.post_boot.sh
     class late_start
@@ -911,6 +885,13 @@ service qcom-post-boot /vendor/bin/init.qcom.post_boot.sh
     group root system wakelock graphics
     disabled
     oneshot
+
+service qti-testscripts /system/bin/sh /product/etc/init.qcom.testscripts.sh
+    class late_start
+    user root
+    disabled
+    oneshot
+    seclabel u:r:qti-testscripts:s0
 
 service wifi-sdio-on /vendor/bin/init.qcom.sdio.sh
     class late_start
@@ -926,6 +907,7 @@ service wifi-crda /vendor/bin/init.crda.sh
 
 on property:sys.boot_completed=1
     start qcom-post-boot
+    start qti-testscripts
 
 on property:ro.vendor.ril.mbn_copy_completed=1
     write /data/vendor/radio/copy_complete 1
@@ -947,18 +929,6 @@ service hostapd_fst /vendor/bin/hw/hostapd -dd -g /data/vendor/wifi/hostapd/glob
     group wifi
     disabled
     oneshot
-
-service vendor.wigig_hostapd /vendor/bin/hw/hostapd -dd  -j wigighostapd /data/vendor/wifi/hostapd/wigig_hostapd.conf
-    class late_start
-    capabilities NET_ADMIN NET_RAW
-    user wifi
-    group wifi inet keystore
-    oneshot
-    disabled
-
-#ASUS_BSP++ Write IMEI to device ID
-on property:persist.vendor.radio.device.imei=*
-    setprop ro.vendor.deviceid ${persist.vendor.radio.device.imei}
 
 service ims_regmanager /system/vendor/bin/exe-ims-regmanagerprocessnative
     class late_start
@@ -1070,10 +1040,10 @@ on property:vendor.asus.sar.audio=*
 on property:vendor.asus.sar.data=*
     restart vendor.sar_setting
 
-on property:vendor.asus.sar.camera=*
+on property:vendor.asus.sar.sla=*
     restart vendor.sar_setting
 
-on property:vendor.asus.sar.sla=*
+on property:vendor.asus.sar.lte1=*
     restart vendor.sar_setting
 
 on property:vendor.wlan.softap.driver.status=*
@@ -1094,10 +1064,12 @@ service vendor.sar_setting /system/vendor/bin/sar_setting
 on property:persist.vendor.asus.qxdmlog.enable=1
    #insmod /system/lib/modules/diagchar.ko
    restart diag_mdlog_start
+   write /proc/driver/UTSstatus  3
 
 #Control by Property - Disable Modem Log
 on property:persist.vendor.asus.qxdmlog.enable=0
    start diag_mdlog_stop
+   write /proc/driver/UTSstatus 2
 #AS-K SSR SAR and Modem Log Config-
 
 service qlogd /system/xbin/qlogd
@@ -1170,9 +1142,6 @@ service poweroffhandler /system/vendor/bin/poweroffhandler
     disabled
     oneshot
 
-on property:vendor.display.lcd_density=*
-    setprop ro.sf.lcd_density ${vendor.display.lcd_density}
-
 # Logcat dump daemon, dumps logs to logdump partition
 service logdumpd /system/bin/logcat -b all -v threadtime -D -w /dev/block/bootdevice/by-name/logdump
     class core
@@ -1197,20 +1166,8 @@ on property:vendor.rild.libpath=*
 on property:ro.vendor.radio.noril=*
     setprop ro.radio.noril ${ro.vendor.radio.noril}
 
-service seemp_healthd /vendor/bin/seemp_healthd
-    class late_start
-    user system
-    group system
-
 service vendor.power_off_alarm /vendor/bin/power_off_alarm
     class core
-    group system
-    disabled
-    oneshot
-
-service vendor.move_time_data /system/bin/move_time_data.sh
-    class main
-    user system
     group system
     disabled
     oneshot
@@ -1246,30 +1203,16 @@ on property:vendor.opengles.version=*
 on property:vendor.gpu.available_frequencies=*
     setprop ro.vendor.gpu.available_frequencies ${vendor.gpu.available_frequencies}
 
-service vendor.audio-hal-2-0 /vendor/bin/hw/android.hardware.audio@2.0-service
+service vendor.audio-hal /vendor/bin/hw/android.hardware.audio.service
     override
     class hal
     user audioserver
     # media gid needed for /dev/fm (radio) and for /data/misc/media (tee)
     group audio camera drmrpc inet media mediadrm net_bt net_bt_admin net_bw_acct oem_2901 wakelock
-    capabilities BLOCK_SUSPEND SYS_NICE
+    capabilities BLOCK_SUSPEND
     ioprio rt 4
     writepid /dev/cpuset/foreground/tasks /dev/stune/foreground/tasks
-    # audioflinger restarts itself when it loses connection with the hal
-    # and its .rc file has an "onrestart restart audio-hal" rule, thus
-    # an additional auto-restart from the init process isn't needed.
-    oneshot
-    interface android.hardware.audio@5.0::IDevicesFactory default
-    interface android.hardware.audio@4.0::IDevicesFactory default
-    interface android.hardware.audio@2.0::IDevicesFactory default
-
-service vendor.contexthub-hal-1-0 /vendor/bin/hw/android.hardware.contexthub@1.0-service
-    override
-    class hal
-    interface android.hardware.contexthub@1.0::IContexthub default
-    user system
-    group system
-    disabled
+    onrestart restart audioserver
 
 # Enable port-bridge service by logTool
 on property:persist.vendor.port_bridge=1
@@ -1277,4 +1220,3 @@ on property:persist.vendor.port_bridge=1
 
 on property:persist.vendor.port_bridge=0
     stop vendor.port-bridge
-
