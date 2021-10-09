@@ -70,11 +70,53 @@ AB_OTA_POSTINSTALL_CONFIG += \
 
 # ANT+
 PRODUCT_PACKAGES += \
-    AntHalService-Soong
+    AntHalService-Soong \
+    com.dsi.ant@1.0.vendor
+
+# Atrace
+PRODUCT_PACKAGES += \
+    android.hardware.atrace@1.0-service
 
 # Audio
 PRODUCT_PACKAGES += \
-    audio.a2dp.default
+    android.hardware.audio@6.0-impl \
+    android.hardware.audio.effect@6.0-impl \
+    android.hardware.audio.service \
+    android.hardware.bluetooth.audio@2.0-impl \
+    android.hardware.soundtrigger@2.2-impl \
+    audio.a2dp.default \
+    audio.bluetooth.default \
+    audio.primary.kona \
+    audio.r_submix.default \
+    audio.usb.default \
+    audio_amplifier.kona \
+    liba2dpoffload \
+    libaudiopreprocessing \
+    libbatterylistener \
+    libbundlewrapper \
+    libcirrusspkrprot \
+    libcomprcapture \
+    libdownmix \
+    libdynproc \
+    libeffectproxy \
+    libexthwplugin \
+    libhdmiedid \
+    libhfp \
+    libldnhncr \
+    libqcompostprocbundle \
+    libqcomvisualizer \
+    libqcomvoiceprocessing \
+    libreverbwrapper \
+    libsndmonitor \
+    libspkrprot \
+    libvisualizer \
+    libvolumelistener
+
+# Bluetooth
+PRODUCT_PACKAGES += \
+    com.qualcomm.qti.bluetooth_audio@1.0.vendor \
+    vendor.qti.hardware.bluetooth_audio@2.0.vendor \
+    vendor.qti.hardware.btconfigstore@1.0.vendor
 
 # Boot control
 PRODUCT_PACKAGES += \
@@ -86,6 +128,13 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_PACKAGES_DEBUG += \
     bootctl
+
+# Camera
+PRODUCT_PACKAGES += \
+    android.hardware.camera.provider@2.4-impl \
+    android.hardware.camera.provider@2.4-service_64 \
+    vendor.qti.hardware.camera.device@1.0.vendor \
+    vendor.qti.hardware.camera.postproc@1.0.vendor
 
 # Common init scripts
 PRODUCT_PACKAGES += \
@@ -102,14 +151,21 @@ PRODUCT_COPY_FILES += \
 # Display
 PRODUCT_PACKAGES += \
     android.hardware.graphics.mapper@3.0-impl-qti-display \
-    vendor.qti.hardware.display.allocator-service \
-    vendor.qti.hardware.display.composer-service \
+    android.hardware.graphics.mapper@4.0-impl-qti-display \
     android.hardware.memtrack@1.0-impl \
     android.hardware.memtrack@1.0-service \
+    android.hardware.renderscript@1.0-impl \
     gralloc.kona \
-    memtrack.kona \
+    libdisplayconfig.qti.vendor \
     libqdMetaData \
-    libdisplayconfig.vendor \
+    libqdutils \
+    libqservice \
+    libsdmcore \
+    libsdmutils \
+    libtinyxml \
+    libvulkan \
+    lights.kona \
+    memtrack.kona \
     vendor.display.config@1.0.vendor \
     vendor.display.config@1.1.vendor \
     vendor.display.config@1.2.vendor \
@@ -122,16 +178,28 @@ PRODUCT_PACKAGES += \
     vendor.display.config@1.9.vendor \
     vendor.display.config@1.10.vendor \
     vendor.display.config@1.11.vendor \
-    vendor.display.config@1.12.vendor \
-    vendor.display.config@1.13.vendor \
-    vendor.display.config@1.14.vendor \
-    vendor.display.config@1.15.vendor \
+    vendor.display.config@2.0.vendor \
+    vendor.qti.hardware.display.allocator-service \
+    vendor.qti.hardware.display.composer-service \
     vendor.qti.hardware.display.mapper@1.0.vendor \
+    vendor.qti.hardware.display.mapper@1.1.vendor \
     vendor.qti.hardware.display.mapper@2.0.vendor \
-    vendor.qti.hardware.display.mapper@3.0.vendor
+    vendor.qti.hardware.display.mapper@3.0.vendor \
+    vendor.qti.hardware.display.mapper@4.0.vendor
 
 PRODUCT_PACKAGES += \
-    vendor.display.config@1.12
+    libdisplayconfig.qti \
+    vendor.display.config@1.0 \
+    vendor.display.config@2.0
+
+# DRM
+PRODUCT_PACKAGES += \
+    android.hardware.drm@1.3-service.clearkey
+
+# Health
+PRODUCT_PACKAGES += \
+    android.hardware.health@2.1-impl \
+    android.hardware.health@2.1-service
 
 # HIDL
 PRODUCT_PACKAGES += \
@@ -144,17 +212,34 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     fastbootd
 
+# Fingerprint
+PRODUCT_PACKAGES += \
+    android.hardware.biometrics.fingerprint@2.1-service
+
 # Hotword Enrollement
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/hotword-hiddenapi-package-whitelist.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/sysconfig/hotword-hiddenapi-package-whitelist.xml \
     $(LOCAL_PATH)/configs/privapp-permissions-hotword.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/privapp-permissions-hotword.xml
+
+# IPACM
+PRODUCT_PACKAGES += \
+    ipacm \
+    IPACM_cfg.xml \
+    libipanat:64 \
+    liboffloadhal:64
 
 # NFC
 PRODUCT_PACKAGES += \
     NfcNci \
     Tag \
     SecureElement \
-    com.android.nfc_extras
+    com.android.nfc_extras \
+    libchrome.vendor \
+    ese_spi_nxp \
+    vendor.nxp.hardware.nfc@2.0.vendor \
+    vendor.nxp.nxpese@1.0.vendor \
+    vendor.nxp.nxpnfc@1.0.vendor \
+    vendor.nxp.nxpnfclegacy@1.0.vendor
 
 # Net
 PRODUCT_PACKAGES += \
@@ -162,6 +247,7 @@ PRODUCT_PACKAGES += \
 
 # Omx
 PRODUCT_PACKAGES += \
+    init.qti.media.sh \
     libc2dcolorconvert \
     libcodec2_hidl@1.0.vendor \
     libcodec2_vndk.vendor \
@@ -175,19 +261,43 @@ PRODUCT_PACKAGES += \
     libOmxVdec \
     libOmxVenc \
     libOmxVidcCommon \
-    libstagefrighthw
+    libstagefrighthw \
+    libwfdaac_vendor
+
+PRODUCT_PACKAGES += \
+    libavservices_minijail \
+    libavservices_minijail.vendor \
+    libavservices_minijail_vendor:32
 
 # Power
 PRODUCT_PACKAGES += \
-    android.hardware.power-service-qti
+    android.hardware.power-service-qti \
+    vendor.qti.hardware.perf@2.0.vendor
+
+# QMI
+PRODUCT_PACKAGES += \
+    libjson \
+    libqti_vndfwk_detect \
+    libqti_vndfwk_detect.vendor \
+    libvndfwk_detect_jni.qti \
+    libvndfwk_detect_jni.qti.vendor \
+    vendor.qti.hardware.systemhelper@1.0 \
+    vendor.qti.hardware.systemhelper@1.0.vendor
+
+# RIL
+PRODUCT_PACKAGES += \
+    libprotobuf-cpp-full \
+    librmnetctl
+
+# Sensors
+PRODUCT_PACKAGES += \
+    android.hardware.sensors@2.0-service.multihal \
+    android.hardware.sensors@2.0-ScopedWakelock.vendor \
+    libsensorndkbridge:64
 
 # Soong namespaces
 PRODUCT_SOONG_NAMESPACES += \
     $(LOCAL_PATH)
-
-# System Helper
-PRODUCT_PACKAGES += \
-    vendor.qti.hardware.systemhelper@1.0
 
 # Telephony
 PRODUCT_PACKAGES += \
@@ -197,6 +307,10 @@ PRODUCT_PACKAGES += \
     qti_telephony_hidl_wrapper.xml \
     qti-telephony-utils \
     qti_telephony_utils.xml
+
+# Thermal
+PRODUCT_PACKAGES += \
+    android.hardware.thermal@2.0-service.qti
 
 # Trust HAL
 PRODUCT_PACKAGES += \
@@ -210,6 +324,11 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_PACKAGES_DEBUG += \
     update_engine_client
+
+# USB
+PRODUCT_PACKAGES += \
+    android.hardware.usb@1.2-service-qti \
+    libusb.vendor:64
 
 PRODUCT_BUILD_SUPER_PARTITION := false
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
@@ -232,8 +351,10 @@ PRODUCT_PACKAGES += \
     libwpa_client \
     libwifi-hal-ctrl \
     libwifi-hal-qcom \
+    vendor.qti.hardware.fstman@1.0.vendor:64 \
     vendor.qti.hardware.wifi.hostapd@1.0.vendor \
     vendor.qti.hardware.wifi.hostapd@1.1.vendor \
+    vendor.qti.hardware.wifi.hostapd@1.2.vendor \
     vendor.qti.hardware.wifi.supplicant@2.0.vendor \
     vendor.qti.hardware.wifi.supplicant@2.1.vendor \
     wpa_supplicant \
