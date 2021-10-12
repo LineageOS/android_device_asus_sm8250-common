@@ -7,3 +7,6 @@ type xrom_file, file_type;
 # Files in proc
 type proc_touchscreen, proc_type, sysfs_type, fs_type;
 type asus_display_proc_exec, proc_type;
+
+# Sysfs
+type asus_display_sysfs, sysfs_type, fs_type;
