@@ -1,3 +1,6 @@
+on fs
+    chown root system /sys/devices/platform/goodix_ts.0/test_keycode
+
 service vendor.fingerprint-inscreen-1-0 /vendor/bin/hw/vendor.lineage.biometrics.fingerprint.inscreen@1.0-service.asus_kona
     interface vendor.lineage.biometrics.fingerprint.inscreen@1.0::IFingerprintInscreen default
     class hal
