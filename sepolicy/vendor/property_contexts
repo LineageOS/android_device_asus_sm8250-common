@@ -8,3 +8,4 @@ vendor.gsm.sim2.present       u:object_r:exported3_radio_prop:s0
 vendor.tel.                   u:object_r:exported3_radio_prop:s0
 ro.vendor.csc.modemhash1      u:object_r:exported3_radio_prop:s0
 ro.vendor.csc.modemhash2      u:object_r:exported3_radio_prop:s0
+vendor.thermal.               u:object_r:vendor_thermal_prop:s0
