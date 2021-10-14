@@ -8,6 +8,8 @@
 
 # Devices
 /dev/goodix_fp          u:object_r:fingerprintd_device:s0
+/dev/lsensor            u:object_r:sensors_device:s0
+/dev/psensor            u:object_r:sensors_device:s0
 
 # Files in rootfs
 /ADF(/.*)?              u:object_r:demoapp_file:s0
